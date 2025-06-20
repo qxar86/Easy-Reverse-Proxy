@@ -8,7 +8,6 @@ function generateProxyUrl(url: string): string
 2. 说明: 生成原始网址的代理网址.
 ## 模板方法
 ### request
-#### TemplateRequest
 ```typescript
 interface TemplateRequest {
     header: object; // 请求头
@@ -20,7 +19,6 @@ request?: (option: TemplateRequest) => TemplateRequest
 ```
 说明: 请求原始网址时调用.
 ### response
-#### TemplateResponse
 ```typescript
 interface TemplateResponse {
     header: object; // 响应头
@@ -38,10 +36,11 @@ import {generateProxyUrl} from '../util/template';
 
 let template: Template = {
     async response (option) {
-        let bodyString = option.body.toString();
-        bodyString = bodyString.replaceAll('Product', 'Easy-Reverse-Proxy');
-        bodyString = bodyString.replaceAll('https://avatars.githubusercontent.com/u/56395004?v=4', generateProxyUrl('https://avatars.githubusercontent.com/u/56395004?v=4&amp;size=40'));
-        option.body = Buffer.from(bodyString);
+        let body = option.body.toString();
+        body = body.replaceAll('Product', 'Easy-Reverse-Proxy');
+        let avatarUrl = 'https://avatars.githubusercontent.com/u/56395004?v=4';
+        body = body.replaceAll(avatarUrl, generateProxyUrl(avatarUrl));
+        option.body = Buffer.from(body);
         return option;
     }
 };
