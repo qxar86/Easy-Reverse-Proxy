@@ -1,6 +1,7 @@
-import {generateSha256} from './helper';
-import {PROXY_CODE_SECRET} from '../config';
+import crypto from 'crypto';
+import {PROXY_SECRET} from '../config';
 
 export function generateProxyUrl(url: string): string {
-    return `/${generateSha256(url, PROXY_CODE_SECRET)}?url=${btoa(url)}`;
+    url = btoa(url);
+    return `${url}_${crypto.createHmac('sha256', PROXY_SECRET).update(url).digest('hex')}`;
 }

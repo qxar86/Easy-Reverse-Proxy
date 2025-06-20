@@ -1,7 +1,6 @@
 # 配置
 ## config.ts
 查看config.ts文件.
-### Proxy
 ```Typescript
 interface Proxy {
     domain: string; // 域名
@@ -16,12 +15,12 @@ import type {Proxy} from './util/model';
 
 export let PORT = 377; // 端口
 
-export let PROXY_CODE_SECRET = 'Easy-Reverse-Proxy'; // 代理码密钥
+export let PROXY_SECRET = 'Easy-Reverse-Proxy'; // 代理密钥
 // 代理
 export let PROXIES: Proxy[] = [
     {
-        domain: "www.example.com",
-        url: "https://github.com/",
+        domain: 'www.example.com',
+        url: 'https://github.com/',
         enable: true
     }
 ];
