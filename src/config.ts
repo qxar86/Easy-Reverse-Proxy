@@ -7,7 +7,7 @@ export let PROXY_SECRET = 'Easy-Reverse-Proxy'; // 代理密钥
 export let PROXIES: Proxy[] = [
   {
         domain: 'so.635835.xyz',
-        url: 'https://www.google.com/',
+        url: 'https://github.com/',
         enable: true
     }
 ];
